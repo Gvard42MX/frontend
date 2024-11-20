@@ -1,41 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Project Management')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    @yield('styles')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Tailwind CSS via Vite -->
+   
 </head>
-<body class="bg-gray-100">
-    <!-- Header -->
-    <header class="bg-blue-500 text-white py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-2xl font-bold">Project Management</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="{{ route('home') }}" class="hover:underline">Dashboard</a></li>
-                    <li><a href="#" class="hover:underline">Projects</a></li>
-                    <li><a href="#" class="hover:underline">Clients</a></li>
-                    <li><a href="#" class="hover:underline">Reports</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="font-sans antialiased">
+    <div class="min-h-screen bg-gray-100">
+        @include('layouts.navigation')
 
-    <!-- Main Content -->
-    <main class="container mx-auto my-8 px-4">
-        @yield('content')
-    </main>
+        <!-- Page Heading -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                @yield('header') <!-- Placeholder untuk konten header -->
+            </div>
+        </header>
 
-    <!-- Footer -->
-    <footer class="bg-blue-500 text-white py-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 Project Management. All rights reserved.</p>
-        </div>
-    </footer>
-
-    @yield('scripts')
+        <!-- Page Content -->
+        <main>
+            @yield('content') <!-- Placeholder untuk konten utama -->
+        </main>
+    </div>
 </body>
 </html>
